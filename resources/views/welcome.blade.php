@@ -20,6 +20,10 @@
 </head>
 
 <body class="antialiased">
+    <div x-data>
+        <button @click="$dispatch('flash', 'Hello again')">Trigger</button>
+    </div>
+
     <!-- Flash-->
     <div
     x-data
