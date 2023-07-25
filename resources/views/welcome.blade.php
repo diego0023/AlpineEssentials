@@ -16,26 +16,25 @@
 </head>
 
 <body class="antialiased">
-    <div x-data="{ currentTab: 'first'}">
-        <button @click="currentTab = 'first'">first</button>
-        <button @click="currentTab = 'second'">secnod</button>
-        <button @click="currentTab = 'third'">third</button>
+    <form
+    x-data="{
+       form: {
+        name: 'diego'
+       }
 
-        <div>
-            <div x-show="currentTab === 'first'">
-                <p>Frist tab.</p>
-            </div>
+       submit(){
+           fetch('endpoint',{
+            'teImaginasElResto': ''
+           });
+       }
+    }"
 
-            <div x-show="currentTab === 'second'">
-                <p>Second tab.</p>
-            </div>
+    @submit.prevent="submit"
+    >
+    <label>Name</label>
+    <input type="text" name="name" id="name" required :model="from.name">
 
-            <div x-show="currentTab === 'third'">
-                <p>Third tab.</p>
-            </div>
-        </div>
-    </div>
-
+    </form>
 </body>
-
 </html>
+
