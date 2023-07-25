@@ -13,28 +13,44 @@
 
     <!-- Alpine.js-->
     <script defer src="https://cdn.jsdelivr.net/npm/alpinejs@3.x.x/dist/cdn.min.js"></script>
+
+    <!-- Module-->
+    <script src="../js/app.js"></script>
+
 </head>
 
 <body class="antialiased">
-    <form
-    x-data="{
-       form: {
-        name: 'diego'
-       }
+    <div x-data="taskApp()" >
 
-       submit(){
-           fetch('endpoint',{
-            'teImaginasElResto': ''
-           });
-       }
-    }"
+        <form @submit.prevent="
+            tasks.push({
+                body: newTask,
+                completed: false
+            });
 
-    @submit.prevent="submit"
-    >
-    <label>Name</label>
-    <input type="text" name="name" id="name" required :model="from.name">
+            newTask='';">
+            <input type="text" placeholder="Go to the markert" x-model="newTask">
+        </form>
 
-    </form>
+        <ul>
+            <template x-for="(task, index) in tasks" :key="index">
+                <li>
+                    <input type="checkbox" x-model="task.completed">
+                    <span x-text="task.body"></span>
+                </li>
+            </template>
+        </ul>
+    </div>
+
 </body>
-</html>
+    <script>
+      let taskApp = () => {
+        return {
+            tasks: [],
+            newTask: '',
 
+        };
+
+    }
+    </script>
+</html>

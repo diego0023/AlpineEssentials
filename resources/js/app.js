@@ -1,1 +1,3 @@
-import './bootstrap';
+import taskApp from '../components/TaskApp';
+
+window.taskApp = taskApp;
