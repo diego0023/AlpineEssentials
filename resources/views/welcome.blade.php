@@ -20,37 +20,15 @@
 </head>
 
 <body class="antialiased">
-    <div x-data="taskApp()" >
+    <!-- Flash-->
+    <div
+    x-data
+    @flash.window="alert($event.detail)">
 
-        <form @submit.prevent="
-            tasks.push({
-                body: newTask,
-                completed: false
-            });
-
-            newTask='';">
-            <input type="text" placeholder="Go to the markert" x-model="newTask">
-        </form>
-
-        <ul>
-            <template x-for="(task, index) in tasks" :key="index">
-                <li>
-                    <input type="checkbox" x-model="task.completed">
-                    <span x-text="task.body"></span>
-                </li>
-            </template>
-        </ul>
     </div>
 
-</body>
     <script>
-      let taskApp = () => {
-        return {
-            tasks: [],
-            newTask: '',
-
-        };
-
-    }
+        let flash = message => window.dispatchEvent(new CustomEvent('flash', {detail: message}));
     </script>
+</body>
 </html>
